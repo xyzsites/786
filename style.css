@@ -1,149 +1,336 @@
-    * { 
-      box-sizing: border-box; 
-      margin: 0; 
-      padding: 0; 
+/* Keep the original style.css as provided, with the following optional addition for full-size images */
+img.prayer-image {
+  max-height: none; /* Remove max-height to show full image */
+  max-width: 100%; /* Ensure it fits within the container */
+  height: auto; /* Maintain aspect ratio */
+}
+
+/* Optional: Adjust product-card for larger images */
+.product-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center images and text */
+}
+
+/* Ensure product-divider and other elements remain consistent */
+.product-divider:last-child {
+  display: none; /* Hide the divider after the last product */
+}
+
+
+    * {
+      margin: 0;
+      box-sizing: border-box;
+      transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
     }
 
     body {
-      font-family: Poppins, sans-serif;
-      background: #000;
-      color: #fff;
-      height: 100vh;
-      overflow: hidden; /* Prevent scrolling */
-      touch-action: pan-y pinch-zoom; /* Better touch handling */
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #1e1e2e 0%, #2a2a72 100%); /* Dark mode by default */
+      color: #e0e0e0; /* Dark mode by default */
+      padding: 20px;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
-    /* Slideshow container */
-    .slideshow-container {
+    body.light-mode {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #2d2d2d;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-areas:
+        'header header header'
+        'menu main right'
+        'footer footer footer';
+      grid-template-columns: 1fr 2fr 1fr;
+      gap: 10px;
+      padding: 10px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .grid-container > div {
+      background: rgba(30, 30, 46, 0.9); /* Dark mode by default */
+      border-radius: 20px;
+      padding: 15px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); /* Dark mode by default */
+    }
+
+    .light-mode .grid-container > div {
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    }
+
+    .grid-container > div:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6); /* Dark mode by default */
+    }
+
+    .light-mode .grid-container > div:hover {
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.2);
+    }
+
+    .item1 {
+      grid-area: header;
+      background: linear-gradient(to right, #ff2e63, #08d9d6); /* Dark mode by default */
+      color: white;
+      text-align: center;
+      padding: 20px;
+      border-radius: 20px;
       position: relative;
-      width: 100vw;
-      height: 100vh;
-      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
     }
 
-    /* Each slide fills the viewport */
-    .mySlides {
-      display: none;
+    .light-mode .item1 {
+      background: linear-gradient(to right, #ff6b6b, #4ecdc4);
+    }
+
+    .item1 .main-header {
+      font-size: 2.5em;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    .item1 .main-header span {
+      font-size: 0.7em;
+      font-weight: 500;
+      display: block;
+      margin-top: 10px;
+    }
+
+    .item2 { grid-area: menu; }
+    .item3 { grid-area: main; }
+    .item4 { grid-area: right; }
+    .item5 {
+      grid-area: footer;
+      text-align: center;
+      background: linear-gradient(to right, #2d3436, #636e72); /* Dark mode by default */
+      color: white;
+      padding: 20px;
+      border-radius: 12px;
+      font-size: 0.9em;
+    }
+
+    .light-mode .item5 {
+      background: linear-gradient(to right, #ff9f43, #ee5253);
+    }
+
+    img {
       width: 100%;
-      height: 100%;
+      height: auto;
+      max-height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 3px solid #08d9d6; /* Dark mode by default */
+      transition: border-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .light-mode img {
+      border-color: #ff9f43;
+    }
+
+    img:hover {
+      transform: scale(1.05);
+    }
+
+    h1 {
+      font-family: 'Inter', sans-serif;
+      font-size: 2em;
+      font-weight: 800;
+      color: #f7ede2; /* Dark mode by default */
+      margin-bottom: 15px;
+    }
+
+    .light-mode h1 {
+      color: #2d3436;
+    }
+
+    h2 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #ff2e63; /* Dark mode by default */
+      margin-bottom: 10px;
+    }
+
+    .light-mode h2 {
+      color: #e63946;
+    }
+
+    h3 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.2em;
+      font-weight: 600;
+      color: #4ecdc4; /* Dark mode by default */
+      margin-bottom: 15px;
+    }
+
+    .light-mode h3 {
+      color: #457b9d;
+    }
+
+    p {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9em;
+      font-weight: 400;
+      color: #e0e0e0; /* Dark mode by default */
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+
+    .light-mode p {
+      color: #2d3436;
+    }
+
+    h4, h5, h6 {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.3em;
+      font-weight: 700;
+      color: #f7ede2; /* Dark mode by default */
+      margin-bottom: 15px;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    .light-mode h4, .light-mode h5, .light-mode h6 {
+      color: #1d3557;
+    }
+
+    a.product-link {
+      display: inline-block;
+      padding: 10px 20px;
+      background: linear-gradient(to right, #08d9d6, #ff2e63); /* Dark mode by default */
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .light-mode a.product-link {
+      background: linear-gradient(to right, #ff9f43, #ee5253);
+    }
+
+    a.product-link:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(to right, #ff2e63, #08d9d6); /* Dark mode by default */
+    }
+
+    .light-mode a.product-link:hover {
+      background: linear-gradient(to right, #ee5253, #ff9f43);
+    }
+
+    .price-tag {
+      font-size: 1.1em;
+      font-weight: 700;
+      color: #ff2e63; /* Dark mode by default */
+      margin-bottom: 15px;
+    }
+
+    .light-mode .price-tag {
+      color: #e63946;
+    }
+
+    .product-divider {
+      border: 0;
+      height: 2px;
+      background: linear-gradient(to right, #08d9d6, #ff2e63); /* Dark mode by default */
+      margin: 20px 0;
+    }
+
+    .light-mode .product-divider {
+      background: linear-gradient(to right, #ff9f43, #ee5253);
+    }
+
+    .dark-mode-toggle {
       position: absolute;
+      top: 15px;
+      right: 15px;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 28px;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
       top: 0;
       left: 0;
+      right: 0;
+      bottom: 0;
+      background: #ccc;
+      border-radius: 28px;
+      transition: 0.4s;
     }
 
-    .slide-content {
-      width: 100%;
-      height: 100%;
-      padding: 12px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .slide-content img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain; /* Show full image without cropping */
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    /* Page number overlay */
-    .page-num {
+    .slider:before {
       position: absolute;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(255, 215, 0, 0.8);
-      color: #111;
-      font-weight: bold;
-      padding: 6px 12px;
-      border-radius: 8px;
-      font-size: 16px;
-      opacity: 0.8;
-      z-index: 5;
-    }
-
-    /* Navigation arrows */
-    .prev, .next {
-      cursor: pointer;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      padding: 16px;
-      color: white;
-      font-weight: bold;
-      font-size: 28px;
+      content: "";
+      height: 20px;
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background: #fff;
       border-radius: 50%;
-      background: rgba(0, 0, 0, 0.4);
-      transition: background 0.3s;
-      z-index: 10;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
-    }
-    .prev { left: 10px; }
-    .next { right: 10px; }
-
-    .prev:hover, .next:hover {
-      background: rgba(255, 215, 0, 0.8);
-      color: #111;
+      transition: 0.4s;
     }
 
-    /* Dots indicator */
-    .dots-container {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 8px;
-      z-index: 5;
+    input:checked + .slider {
+      background: linear-gradient(to right, #08d9d6, #ff2e63); /* Dark mode by default */
     }
 
-    .dot {
-      cursor: pointer;
-      height: 12px;
-      width: 12px;
-      background-color: rgba(255, 255, 255, 0.5);
-      border-radius: 50%;
-      display: inline-block;
-      transition: background-color 0.3s;
+    .light-mode input:checked + .slider {
+      background: linear-gradient(to right, #ff9f43, #ee5253);
     }
 
-    .dot.active {
-      background-color: rgba(255, 215, 0, 0.8);
+    input:checked + .slider:before {
+      transform: translateX(22px);
     }
 
-    /* Fade animation */
-    .fade {
-      animation: fade 0.8s ease-in-out;
-    }
-    @keyframes fade {
-      from { opacity: 0.3; }
-      to { opacity: 1; }
-    }
-
-    /* Mobile optimizations */
-    @media (max-width: 768px) {
-      .prev, .next {
-        padding: 14px;
-        font-size: 24px;
+    @media only screen and (max-width: 768px) {
+      .grid-container {
+        grid-template-areas:
+          'header'
+          'menu'
+          'main'
+          'right'
+          'footer';
+        grid-template-columns: 1fr;
       }
-      
-      .page-num {
-        font-size: 14px;
-        padding: 4px 10px;
+
+      .item1 .main-header {
+        font-size: 1.8em;
       }
-      
-      .dot {
-        height: 10px;
-        width: 10px;
+
+      .dark-mode-toggle {
+        top: 10px;
+        right: 10px;
+      }
+
+      .toggle-switch {
+        width: 40px;
+        height: 24px;
+      }
+
+      .slider:before {
+        height: 16px;
+        width: 16px;
+      }
+
+      input:checked + .slider:before {
+        transform: translateX(16px);
       }
     }
-
-    /* Desktop optimizations */
-    @media (min-width: 769px) {
-      .slide-content img {
-        max-width: 90%;
-        max-height: 90%;
-      }
-    }
+    
